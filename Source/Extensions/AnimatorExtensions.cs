@@ -5,22 +5,6 @@ namespace UnityForge.AnimCallbacks
 {
     public static class AnimatorExtensions
     {
-        private const string OnStartEventRaisedMethodName = "OnStartEventRaised";
-        private const string OnEndEventRaisedMethodName = "OnEndEventRaised";
-
-        public static AnimationClip GetAnimationClip(this Animator animator, int layerIndex, string clipName)
-        {
-            var clipsInfo = animator.GetCurrentAnimatorClipInfo(layerIndex);
-            var index = Array.FindIndex(clipsInfo, x => x.clip.name == clipName);
-            if (index == -1)
-            {
-                Debug.LogWarningFormat("Clip with name {0} not found in layer with index {1}", clipName, layerIndex);
-                return null;
-            }
-            var clipInfo = clipsInfo[index];
-            return clipInfo.clip;
-        }
-
         public static void OnClipStart(this Animator animator, int layerIndex, string clipName, Action callback)
         {
             animator.OnClipStartOrEnd(layerIndex, clipName, callback, true);
@@ -33,35 +17,27 @@ namespace UnityForge.AnimCallbacks
 
         private static void OnClipStartOrEnd(this Animator animator, int layerIndex, string clipName, Action callback, bool isStart)
         {
-            if (callback == null)
-            {
-                Debug.LogWarning("Trying to register null callback for animator clip " + (isStart ? "start" : "end"));
-                return;
-            }
-
             var clip = animator.GetAnimationClip(layerIndex, clipName);
             if (clip == null)
             {
-                Debug.LogWarning("Failed to get animation clip");
+                Debug.LogWarning("Failed to get animation clip for Animator component");
                 return;
             }
 
-            var eventReceiver = animator.gameObject.GetComponent<AnimationEventReceiver>();
-            if (eventReceiver == null)
-            {
-                eventReceiver = animator.gameObject.AddComponent<AnimationEventReceiver>();
-            }
+            clip.BindStartOrEndCallback(animator.gameObject, callback, isStart);
+        }
 
-            if (isStart)
+        private static AnimationClip GetAnimationClip(this Animator animator, int layerIndex, string clipName)
+        {
+            var clipsInfo = animator.GetCurrentAnimatorClipInfo(layerIndex);
+            var index = Array.FindIndex(clipsInfo, x => x.clip.name == clipName);
+            if (index == -1)
             {
-                eventReceiver.RegisterAnimationStartCallback(callback);
-                clip.AddEventIfNotExists(OnStartEventRaisedMethodName, 0.0f);
+                Debug.LogWarningFormat("Clip with name {0} not found in layer with index {1}", clipName, layerIndex);
+                return null;
             }
-            else
-            {
-                eventReceiver.RegisterAnimationEndCallback(callback);
-                clip.AddEventIfNotExists(OnEndEventRaisedMethodName, clip.length);
-            }
+            var clipInfo = clipsInfo[index];
+            return clipInfo.clip;
         }
     }
 }
