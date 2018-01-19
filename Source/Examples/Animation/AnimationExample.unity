@@ -128,23 +128,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!95 &99156685
-Animator:
-  serializedVersion: 3
+--- !u!111 &99156685
+Animation:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 99156684}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: d1a3aec1d34b2fe40ad53fc196e0da2a, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 0}
+  m_Animations:
+  - {fileID: 7400000, guid: aeb4cba5a2e9b0442be272c54f9c28d6, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!114 &99156686
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -153,12 +151,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 99156684}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0901d42e01bb37b4cb4f0ea231c46d81, type: 3}
+  m_Script: {fileID: 11500000, guid: b6de9ba79fb40284f99ecc3e8e7a3662, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 99156685}
-  layerIndex: 0
-  clipName: AnimatorExampleClip
+  exampleAnimation: {fileID: 99156685}
+  clipName: AnimationExampleClip
 --- !u!23 &99156687
 MeshRenderer:
   m_ObjectHideFlags: 0
