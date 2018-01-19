@@ -7,13 +7,25 @@ Runtime callbacks for Unity animation clip start and end.
 While Unity animation events provide ability to call method from specific frame of animation clip, there is no Unity API for binding such method at runtime from code. So it was decided to implement such way to add callbacks to Unity animation clips. Current version supports only callbacks for animation clip start and animation clip end.
 
 ## Usage
-Import `UnityForge.AnimCallbacks` namespace to be able to use extensions for callbacks. For animator's animation clip callbacks layer index and clip name are required to add callback:
+Import `UnityForge.AnimCallbacks` namespace to be able to use extensions for callbacks.
+
+### Animator
+For Animator's animation clip callbacks layer index and clip name are required to add callback:
 ```csharp
 var animator = GetComponent<Animator>();
 var layerIndex = 0;
-var clipName = "MyClipName";
+var clipName = "AnimatorClipName";
 animator.OnClipStart(layerIndex, clipName, () => Debug.LogFormat("{0} clip started", clipName));
 animator.OnClipEnd(layerIndex, clipName, () => Debug.LogFormat("{0} clip ended", clipName));
+```
+
+### Animation
+For Animation's animation clip callbacks clip name is required to add callback:
+```csharp
+var animation = GetComponent<Animation>();
+var clipName = "AnimationClipName";
+animation.OnClipStart(clipName, () => Debug.LogFormat("{0} clip started", clipName));
+animation.OnClipEnd(clipName, () => Debug.LogFormat("{0} clip ended", clipName));
 ```
 
 Find more examples [here](https://github.com/rfadeev/unity-forge-anim-callbacks/tree/master/Source/Examples).
