@@ -13,11 +13,11 @@ namespace UnityForge.AnimCallbacks.Examples
 
         private void Start()
         {
-            animator.OnClipStart(layerIndex, clipName, () =>
+            animator.AddClipStartCallback(layerIndex, clipName, () =>
             {
                 Debug.LogFormat("Clip \"{0}\": started", clipName);
             });
-            animator.OnClipEnd(layerIndex, clipName, () =>
+            animator.AddClipEndCallback(layerIndex, clipName, () =>
             {
                 Debug.LogFormat("Clip \"{0}\": ended", clipName);
             });
