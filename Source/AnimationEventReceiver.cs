@@ -8,6 +8,7 @@ namespace UnityForge.AnimCallbacks
     {
         private List<Action> animationStartCallbacks = new List<Action>();
         private List<Action> animationEndCallbacks = new List<Action>();
+        private Dictionary<float, List<Action>> animationTimelineCallbacks = new Dictionary<float, List<Action>>();
 
         public void RegisterAnimationStartCallback(Action callback)
         {
@@ -31,6 +32,21 @@ namespace UnityForge.AnimCallbacks
             animationEndCallbacks.Add(callback);
         }
 
+        public void RegisterTimelineCallback(float atPosition, Action callback)
+        {
+            if (callback == null)
+            {
+                Debug.LogWarningFormat("Trying to register null animation timeline callback");
+                return;
+            }
+
+            if (!animationTimelineCallbacks.ContainsKey(atPosition))
+            {
+                animationTimelineCallbacks.Add(atPosition, new List<Action>());
+            }
+            animationTimelineCallbacks[atPosition].Add(callback);
+        }
+
         // Unity binds animation events by method name. This means all components
         // which have method with the name from animation event will be called.
         // Such component must be attached to the object with Animator/Animation.
@@ -44,6 +60,18 @@ namespace UnityForge.AnimCallbacks
         private void OnEndEventRaised()
         {
             FireCallbacks(animationEndCallbacks);
+        }
+
+        private void OnTimelineEventRaised(float atPosition)
+        {
+            if (!animationTimelineCallbacks.ContainsKey(atPosition))
+            {
+                Debug.LogWarningFormat("Callbacks not registered for timeline position {0}", atPosition);
+                return;
+            }
+
+            var animationPositionCallbacks = animationTimelineCallbacks[atPosition];
+            FireCallbacks(animationPositionCallbacks);
         }
 
         // Unity cannot call static method from animation event so FireCallbacks

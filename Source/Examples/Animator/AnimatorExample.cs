@@ -13,8 +13,18 @@ namespace UnityForge.AnimCallbacks.Examples
 
         private void Start()
         {
-            animator.OnClipStart(layerIndex, clipName, () => Debug.LogFormat("{0} clip started", clipName));
-            animator.OnClipEnd(layerIndex, clipName, () => Debug.LogFormat("{0} clip ended", clipName));
+            animator.OnClipStart(layerIndex, clipName, () =>
+            {
+                Debug.LogFormat("Clip \"{0}\": started", clipName);
+            });
+            animator.OnClipEnd(layerIndex, clipName, () =>
+            {
+                Debug.LogFormat("Clip \"{0}\": ended", clipName);
+            });
+            animator.AddClipCallback(layerIndex, clipName, 0.5f, () =>
+            {
+                Debug.LogFormat("Clip \"{0}\": callback at 0.5f seconds after start", clipName);
+            });
         }
     }
 }

@@ -15,6 +15,18 @@ namespace UnityForge.AnimCallbacks
             animation.OnClipStartOrEnd(clipName, callback, false);
         }
 
+        public static void AddClipCallback(this Animation animation, string clipName, float atPosition, Action callback)
+        {
+            var clip = animation.GetClip(clipName);
+            if (clip == null)
+            {
+                Debug.LogWarning("Failed to get animation clip for Animation component");
+                return;
+            }
+
+            clip.BindCallback(animation.gameObject, atPosition, callback);
+        }
+
         private static void OnClipStartOrEnd(this Animation animation, string clipName, Action callback, bool isStart)
         {
             var clip = animation.GetClip(clipName);
