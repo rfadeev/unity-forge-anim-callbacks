@@ -38,16 +38,26 @@ namespace UnityForge.AnimCallbacks
         // that case method must be generated at runtime.
         private void OnStartEventRaised()
         {
-            foreach (var callback in animationStartCallbacks)
-            {
-                callback();
-            }
+            FireCallbacks(animationStartCallbacks);
         }
 
         private void OnEndEventRaised()
         {
-            foreach (var callback in animationEndCallbacks)
+            FireCallbacks(animationEndCallbacks);
+        }
+
+        // Unity cannot call static method from animation event so FireCallbacks
+        // cannot be called for AnimationEventReceiver added by user.
+        private static void FireCallbacks(List<Action> callbacks)
+        {
+            // In current implementation registered callbacks cannot be removed.
+            // Store current count in local variable for the case if callback
+            // adds new callback to the list. Added one will be triggered next
+            // time animation event happens.
+            var count = callbacks.Count;
+            for (var i = 0; i < count; ++i)
             {
+                var callback = callbacks[i];
                 callback();
             }
         }
