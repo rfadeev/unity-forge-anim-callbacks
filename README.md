@@ -57,7 +57,7 @@ private void LogStart()
 }
 ```
 
-Find more Animator examples [here](https://github.com/rfadeev/unity-forge-anim-callbacks/tree/master/Source/Examples/Animation).
+Find more Animator examples [here](https://github.com/rfadeev/unity-forge-anim-callbacks/tree/master/Source/Examples/Animator).
 
 ### Animation
 For Animation's animation clip callbacks clip name is required to add callback. To add callback at given timeline position, position parameter representing time in seconds from clip start is required.
