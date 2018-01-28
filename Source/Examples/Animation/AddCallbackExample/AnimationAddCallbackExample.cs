@@ -4,6 +4,8 @@ namespace UnityForge.AnimCallbacks.Examples
 {
     public class AnimationAddCallbackExample : MonoBehaviour
     {
+        private const float ExampleTimelinePosition = 0.5f;
+
         [SerializeField]
         private Animation exampleAnimation;
         [SerializeField]
@@ -19,9 +21,9 @@ namespace UnityForge.AnimCallbacks.Examples
             {
                 Debug.LogFormat("Clip \"{0}\": ended", clipName);
             });
-            exampleAnimation.AddClipCallback(clipName, 0.5f, () =>
+            exampleAnimation.AddClipCallback(clipName, ExampleTimelinePosition, () =>
             {
-                Debug.LogFormat("Clip \"{0}\": callback at 0.5f seconds after start", clipName);
+                Debug.LogFormat("Clip \"{0}\": callback at {1} seconds after start", clipName, ExampleTimelinePosition);
             });
             exampleAnimation.Play(clipName);
         }
