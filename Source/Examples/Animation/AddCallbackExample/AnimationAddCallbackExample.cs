@@ -2,29 +2,28 @@
 
 namespace UnityForge.AnimCallbacks.Examples
 {
-    public class AnimatorExample : MonoBehaviour
+    public class AnimationAddCallbackExample : MonoBehaviour
     {
         [SerializeField]
-        private Animator animator;
-        [SerializeField]
-        private int layerIndex;
+        private Animation exampleAnimation;
         [SerializeField]
         private string clipName;
 
         private void Start()
         {
-            animator.AddClipStartCallback(layerIndex, clipName, () =>
+            exampleAnimation.AddClipStartCallback(clipName, () =>
             {
                 Debug.LogFormat("Clip \"{0}\": started", clipName);
             });
-            animator.AddClipEndCallback(layerIndex, clipName, () =>
+            exampleAnimation.AddClipEndCallback(clipName, () =>
             {
                 Debug.LogFormat("Clip \"{0}\": ended", clipName);
             });
-            animator.AddClipCallback(layerIndex, clipName, 0.5f, () =>
+            exampleAnimation.AddClipCallback(clipName, 0.5f, () =>
             {
                 Debug.LogFormat("Clip \"{0}\": callback at 0.5f seconds after start", clipName);
             });
+            exampleAnimation.Play(clipName);
         }
     }
 }
