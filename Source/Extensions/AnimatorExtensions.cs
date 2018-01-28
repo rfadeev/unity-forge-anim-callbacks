@@ -34,6 +34,35 @@ namespace UnityForge.AnimCallbacks
             clip.BindCallback(animator.gameObject, atPosition, callback);
         }
 
+        public static void RemoveClipStartCallback(this Animator animator, int layerIndex, string clipName, Action callback)
+        {
+            animator.RemoveClipCallback(layerIndex, clipName, 0.0f, callback);
+        }
+
+        public static void RemoveClipEndCallback(this Animator animator, int layerIndex, string clipName, Action callback)
+        {
+            var clip = animator.GetAnimationClip(layerIndex, clipName);
+            if (clip == null)
+            {
+                Debug.LogWarning("Failed to get animation clip for Animator component");
+                return;
+            }
+
+            clip.UnbindCallback(animator.gameObject, clip.length, callback);
+        }
+
+        public static void RemoveClipCallback(this Animator animator, int layerIndex, string clipName, float atPosition, Action callback)
+        {
+            var clip = animator.GetAnimationClip(layerIndex, clipName);
+            if (clip == null)
+            {
+                Debug.LogWarning("Failed to get animation clip for Animator component");
+                return;
+            }
+
+            clip.UnbindCallback(animator.gameObject, atPosition, callback);
+        }
+
         private static AnimationClip GetAnimationClip(this Animator animator, int layerIndex, string clipName)
         {
             var clipsInfo = animator.GetCurrentAnimatorClipInfo(layerIndex);

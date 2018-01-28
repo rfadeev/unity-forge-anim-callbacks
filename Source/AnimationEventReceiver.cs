@@ -12,7 +12,7 @@ namespace UnityForge.AnimCallbacks
         {
             if (callback == null)
             {
-                Debug.LogWarningFormat("Trying to register null animation timeline callback");
+                Debug.LogWarning("Trying to register null animation timeline callback");
                 return;
             }
 
@@ -22,6 +22,36 @@ namespace UnityForge.AnimCallbacks
             }
 
             animationTimelineCallbacks[atPosition].Add(callback);
+        }
+
+        public bool UnregisterTimelineCallback(float atPosition, Action callback)
+        {
+            if (callback == null)
+            {
+                Debug.LogWarning("Trying to unregister null animation timeline callback");
+                return false;
+            }
+
+            if (!animationTimelineCallbacks.ContainsKey(atPosition))
+            {
+                Debug.LogWarningFormat("Trying to unregister animation timeline callback not registered at timeline position {0}", atPosition);
+                return false;
+            }
+
+            var removed = animationTimelineCallbacks[atPosition].Remove(callback);
+            if (!removed)
+            {
+                Debug.LogWarning("Failed to unregister animation timeline callback since it was not registered");
+                return false;
+            }
+
+            var lastCallbackForPositionRemoved = animationTimelineCallbacks[atPosition].Count == 0;
+            if (lastCallbackForPositionRemoved)
+            {
+                animationTimelineCallbacks.Remove(atPosition);
+            }
+
+            return lastCallbackForPositionRemoved;
         }
 
         // Unity binds animation events by method name. This means all components
