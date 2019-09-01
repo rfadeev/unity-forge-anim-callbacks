@@ -6,10 +6,12 @@ namespace UnityForge.AnimCallbacks.Examples
     {
         private const float ExampleTimelinePosition = 0.5f;
 
+#pragma warning disable 0649
         [SerializeField]
         private Animation exampleAnimation;
         [SerializeField]
         private string clipName;
+#pragma warning restore 0649
 
         private void Start()
         {
