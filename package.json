@@ -1,0 +1,11 @@
+{
+    "name": "com.rfadeev.unityforge.animcallbacks",
+    "displayName": "Unity Forge Anim Callbacks",
+    "version": "1.0.0",
+    "unity": "2017.1",
+    "description": "Runtime callbacks for Unity animation clips used in Animator and Animation components.",
+    "author": {
+        "name": "Roman Fadeev",
+        "url": "https://twitter.com/Sunset_Drive"
+    }
+}
