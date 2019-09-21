@@ -6,6 +6,21 @@ Runtime callbacks for Unity animation clips used in Animator and Animation compo
 ## Motivation
 While Unity animation events provide ability to call method from specific time point of animation clip, there is no Unity API for binding such method at runtime from code. So it was decided to implement such way to add callbacks to Unity animation clips.
 
+## Installation
+Project supports Unity Package Manager. To install project as Git package do following:
+1. Close Unity project and open the `Packages/manifest.json` file.
+2. Update `dependencies` to have `com.rfadeev.unityforge.animcallbacks` package:
+```json
+{
+  "dependencies": {
+    "com.rfadeev.unityforge.animcallbacks": "https://github.com/rfadeev/unity-forge-anim-callbacks.git"
+  }
+}
+```
+3. Open Unity project.
+
+Alternatively, add this repository as submodule under `Assets` folder or download it and put to `Assets` folder of your Unity project. 
+
 ## Usage
 Import `UnityForge.AnimCallbacks` namespace to be able to use extensions for callbacks. Both Animator and Animation extension methods have same names:
 * `AddClipStartCallback` - to add callback for start of animation clip.
