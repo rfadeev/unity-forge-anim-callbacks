@@ -13,13 +13,13 @@ Project supports Unity Package Manager. To install project as Git package do fol
 ```json
 {
   "dependencies": {
-    "com.rfadeev.unityforge.animcallbacks": "https://github.com/rfadeev/unity-forge-anim-callbacks.git"
+    "com.rfadeev.unityforge.animcallbacks": "https://github.com/rfadeev/unity-forge-anim-callbacks.git#upm"
   }
 }
 ```
 3. Open Unity project.
 
-Alternatively, add this repository as submodule under `Assets` folder or download it and put to `Assets` folder of your Unity project. 
+Alternatively, using upm branch add this repository as submodule under `Assets` folder or download it and put to `Assets` folder of your Unity project. 
 
 ## Usage
 Import `UnityForge.AnimCallbacks` namespace to be able to use extensions for callbacks. Both Animator and Animation extension methods have same names:
@@ -72,7 +72,7 @@ private void LogStart()
 }
 ```
 
-Find more Animator examples [here](https://github.com/rfadeev/unity-forge-anim-callbacks/tree/master/Source/Examples/Animator).
+Find more Animator examples [here](https://github.com/rfadeev/unity-forge-anim-callbacks/tree/master/Packages/com.rfadeev.unityforge.animcallbacks/Samples/Animator).
 
 ### Animation
 For Animation's animation clip callbacks clip name is required to add callback. To add callback at given timeline position, position parameter representing time in seconds from clip start is required.
@@ -112,7 +112,7 @@ private void LogStart()
 }
 ```
 
-Find more Animation examples [here](https://github.com/rfadeev/unity-forge-anim-callbacks/tree/master/Source/Examples/Animation).
+Find more Animation examples [here](https://github.com/rfadeev/unity-forge-anim-callbacks/tree/master/Packages/com.rfadeev.unityforge.animcallbacks/Samples/Animation).
 
 ## Caveats
 Callbacks are implemented via adding Unity animation events to the animation clip and `AnimationEventReceiver` component to the same object Animator or Animation is attached. Following should be taken into account when using callbacks:
