@@ -174,7 +174,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 99156685}
   layerIndex: 0
-  clipName: AnimatorExampleClip
+  clipName: AnimatorAddExampleClip
 --- !u!23 &99156687
 MeshRenderer:
   m_ObjectHideFlags: 0

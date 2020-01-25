@@ -7,5 +7,23 @@
     "author": {
         "name": "Roman Fadeev",
         "url": "https://twitter.com/Sunset_Drive"
-    }
+    },
+    "samples": [
+        {
+            "displayName": "Animation Add Callback Example",
+            "path": "Samples~/Animation/AddCallbackExample"
+        },
+        {
+            "displayName": "Animation Remove Callback Example",
+            "path": "Samples~/Animation/RemoveCallbackExample"
+        },
+        {
+            "displayName": "Animator Add Callback Example",
+            "path": "Samples~/Animator/AddCallbackExample"
+        },
+        {
+            "displayName": "Animator Remove Callback Example",
+            "path": "Samples~/Animator/RemoveCallbackExample"
+        }
+      ]
 }

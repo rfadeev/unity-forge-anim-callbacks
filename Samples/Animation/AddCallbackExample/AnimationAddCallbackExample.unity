@@ -170,7 +170,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   exampleAnimation: {fileID: 99156685}
-  clipName: AnimationExampleClip
+  clipName: AnimationAddExampleClip
 --- !u!23 &99156687
 MeshRenderer:
   m_ObjectHideFlags: 0
