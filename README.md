@@ -1,4 +1,5 @@
 [![license](https://img.shields.io/github/license/rfadeev/unity-forge-anim-callbacks.svg)](https://github.com/rfadeev/unity-forge-anim-callbacks/blob/master/LICENSE.md)
+[![openupm](https://img.shields.io/npm/v/com.rfadeev.unityforge.animcallbacks?label=openupm&registry_uri=https://package.openupm.com)](https://openupm.com/packages/com.rfadeev.unityforge.animcallbacks/)
 
 # Unity Forge Anim Callbacks
 Runtime callbacks for Unity animation clips used in Animator and Animation components.
@@ -7,6 +8,17 @@ Runtime callbacks for Unity animation clips used in Animator and Animation compo
 While Unity animation events provide ability to call method from specific time point of animation clip, there is no Unity API for binding such method at runtime from code. So it was decided to implement such way to add callbacks to Unity animation clips.
 
 ## Installation
+
+### Install via OpenUPM
+
+The package is available on the [openupm registry](https://openupm.com). It's recommended to install it via [openupm-cli](https://github.com/openupm/openupm-cli).
+
+```
+openupm add com.rfadeev.unityforge.animcallbacks
+```
+
+### Install via Git
+
 Project supports Unity Package Manager. To install project as Git package do following:
 1. Close Unity project and open the `Packages/manifest.json` file.
 2. Update `dependencies` to have `com.rfadeev.unityforge.animcallbacks` package:
